@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: GeoService
+  profiles:
+    active: dev

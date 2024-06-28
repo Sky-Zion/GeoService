@@ -1,0 +1,50 @@
+server:
+  port: 8802
+  error:
+    include-stacktrace: always
+    include-message: always
+
+spring:
+  application:
+    name: GeoService
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8800/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: GeoService
+    lease-renewal-interval-in-seconds: 30
+
+security:
+  username: ${GS_USER}
+  password: ${GS_PASSWORD}
+
+springdoc:
+  swagger-ui:
+    path: /gs/swagger-ui
+    disable-swagger-default-url: true
+    enabled: true
+  api-docs:
+    enabled: true
+    path: /gs/api-docs
+
+logging:
+  level.ru.dsci.*: debug
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread]: %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.sss} [%thread] %-5level %logger{36}: %msg%n"
+  file:
+    name: logs/geo_service.log
+    path: logs/
+
+http:
+  timeout: 10
+
+yandex:
+  geocoder:
+    key: "920c39bb-35a0-403e-b80c-2e23248dd015"

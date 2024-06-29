@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 import ru.dsci.gs.models.entities.GeoData;
 import ru.dsci.gs.models.entities.GeoPoint;
 import ru.dsci.gs.services.GeoDataProvider;
-import ru.dsci.gs.services.HttpClientService;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
+import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
@@ -23,15 +23,13 @@ public class GeoDataProviderImpl implements GeoDataProvider {
     private final static String YANDEX_GET_ADDRESS_TEMPLATE = "https://geocode-maps.yandex.ru/1.x/?apikey=%s&geocode=%f,%f&sco=latlong&format=json";
     private final static String YANDEX_GET_GEO_TEMPLATE = "https://geocode-maps.yandex.ru/1.x/?apikey=%s&geocode=%s&format=json";
 
-    private final HttpClientService httpClientService;
+    private final HttpClient httpClient;
 
     @Value("${yandex.geocoder.key}")
     private String apiKey;
 
     private HttpResponse<String> getResponse(HttpRequest request) throws IOException, InterruptedException {
-        return httpClientService
-                .getClient()
-                .send(request, HttpResponse.BodyHandlers.ofString());
+        return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
     private HttpResponse<String> sendGetRequest(String url) throws IOException, InterruptedException {

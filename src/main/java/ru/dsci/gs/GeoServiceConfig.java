@@ -42,7 +42,7 @@ public class GeoServiceConfig {
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.findAndRegisterModules();
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-        objectMapper.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         objectMapper.setDateFormat(new SimpleDateFormat("dd.MM.yyyy hh:mm:ss", Locale.getDefault()));
         return objectMapper;

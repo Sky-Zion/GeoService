@@ -65,7 +65,7 @@ public class GeoDataProviderImpl implements GeoDataProvider {
                 .getJSONObject("Point")
                 .getString("pos");
         String[] coordinates = point.split(" ");
-        return new GeoData(address, new GeoPoint(Double.valueOf(coordinates[0]), Double.valueOf(coordinates[1])));
+        return new GeoData(address, new GeoPoint(Double.valueOf(coordinates[1]), Double.valueOf(coordinates[0])));
     }
 
     @Override

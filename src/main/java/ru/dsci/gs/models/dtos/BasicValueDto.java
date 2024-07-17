@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Schema(name = "basicValue", description = "Значение базового типа (int, boolean, date и т.п.)")
-@JsonRootName(value = "basicValue")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

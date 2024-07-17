@@ -24,6 +24,7 @@ import java.io.IOException;
 public class GeoServiceController {
 
     private final ObjectMapper objectMapper;
+
     private final GeoDataProvider geoDataProvider;
 
     @Operation(
@@ -63,21 +64,22 @@ public class GeoServiceController {
     }
 
     @Operation(
-            summary = "Возвращает координаты и форматированный адрес по адресу",
-            description = "С помощью операции геокодирования возвращает координаты и форматированный адрес по адресу")
+            summary = "Возвращает координаты и форматированный адрес по заданному адресу",
+            description = "С помощью операции геокодирования возвращает координаты и форматированный адрес по заданному адресу")
     @RequestMapping(
             value = "/geodata/byaddress",
             headers = {"content-type=application/json"},
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE,
             method = RequestMethod.POST)
-    public ResponseEntity<GeoDataDto> getGeoPoint(@RequestBody BasicAddressDto address) throws IOException, InterruptedException {
-        try {
+    public ResponseEntity<GeoDataDto> getGeoPoint(@RequestBody AddressDto address) throws IOException, InterruptedException {
+//        try {
+            geoDataProvider.getGeoData(address.getAddress());
             return ResponseEntity.ok(objectMapper.convertValue(geoDataProvider.getGeoData(address.getAddress()), GeoDataDto.class));
-        } catch (RuntimeException e) {
-            log.error(e.getMessage());
-            return ResponseEntity.status(500).build();
-        }
+//        } catch (RuntimeException e) {
+//            log.error(e.getMessage());
+//            return ResponseEntity.status(500).build();
+//        }
     }
 
 }

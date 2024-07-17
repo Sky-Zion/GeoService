@@ -14,8 +14,8 @@ public class GeoTools {
         return getDistance(geoPair.getPointA(), geoPair.getPointB());
     }
 
-    public static double getDistance(GeoPoint pointA, GeoPoint pointB) {
-        return getDistance(pointA.getLat(), pointA.getLon(), pointB.getLat(), pointB.getLon());
+    public static double getDistance(GeoPoint geoPointA, GeoPoint geoPointB) {
+        return getDistance(geoPointA.getLat(), geoPointA.getLon(), geoPointB.getLat(), geoPointB.getLon());
     }
 
     public static double getDistance(double latA, double lonA, double latB, double lonB) {

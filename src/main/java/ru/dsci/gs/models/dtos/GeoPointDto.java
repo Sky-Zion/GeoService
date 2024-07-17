@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Schema(name = "geoPoint", description = "Географические координаты точки")
-@JsonRootName(value = "geoPoint")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

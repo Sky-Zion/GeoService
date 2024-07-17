@@ -1,7 +1,5 @@
 package ru.dsci.gs.models.entities;
 
-
-import ru.dsci.gs.tools.Constants;
 import ru.dsci.gs.tools.GeoTools;
 
 import java.util.ArrayList;
@@ -31,10 +29,7 @@ public class Area {
     }
 
     public void setWidth(double width) {
-        if (width <= 0) throw new IllegalArgumentException(
-                String.format(
-                        "width can't be: %s",
-                        Constants.GEO_FORMAT.format(width)));
+        if (width <= 0) throw new IllegalArgumentException(String.format("width can't be: %f", width));
         this.width = width;
     }
 
@@ -44,18 +39,8 @@ public class Area {
 
     public void setHeight(double height) {
         if (width <= 0) throw new IllegalArgumentException(
-                String.format(
-                        "height can't be: %s",
-                        Constants.GEO_FORMAT.format(width)));
+                String.format("height can't be: %f", width));
         this.height = height;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "%s; %s,%s", center,
-                Constants.GEO_FORMAT.format(width),
-                Constants.GEO_FORMAT.format(height));
     }
 
     private void setCones() {
